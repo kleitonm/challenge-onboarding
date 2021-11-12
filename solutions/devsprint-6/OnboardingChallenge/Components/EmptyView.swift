@@ -9,75 +9,66 @@
 import Foundation
 import UIKit
 
+struct EmptyViewConfiguration {
+    let title: String
+    let subtitle: String
+}
+
 final class EmptyView: UIView {
+    
     
     override init(frame: CGRect = .zero) {
         super.init(frame: frame)
-    }
-
-    
-   
-    //label configuration
-    //private var emptyMessageLabel: UILabel = {
-    private var titleLabel: UILabel = {
-    let label: UILabel
-    label.text = "No repositories found"
-    label.translatesAutoresizingMaskIntoConstraints = false
-    label.textColor = UIColor.darkText
-    label.font = UIFont.systemFont(ofSize: 16)
-    return label
-    }()
-    
-    private var subTitleLabel: UILabel = {
-    let label: UILabel
-    label.text = "Search repositories found"
-    label.translatesAutoresizingMaskIntoConstraints = false
-    label.textColor = UIColor.gray
-    label.font = UIFont.systemFont(ofSize: 14)
-    return label
-    }()
-    
-    struct EmptyViewConfiguration {
-        let title: String
-        let subtitle: String
-    }
-    func updateView(with configuration: EmptyViewConfiguration) {
-        titleLabel.text = configuration.title
-        subtitleLabel.text = configuration.subtitle
-    }
-    let configuration = EmptyViewConfiguration(title: "No repositories found", subtitle: "Search repositories found")
-    let emptyView = EmptyView()
-    emptyView.configure(with: configuration)
-    
-    func configureSubView() {
+        addSubview(titleLabel)
+        addSubview(subTitleLabel)
+        addSubview(configContraint)
         
-    self.addSubview(emptyMessageLabel)
-
-    self.backgroundColor = .white
-        
+        backgroundColor = .white
     }
     
-    //add view
-    addSubView(titlelabel)
-    addSubView(subtitlelabel)
-    
-    //add contranint
-    func configurationcontrains() {
-    
-        self.titleLabel.centerXanchor.constraint(equalTo:self.centerXAnchor).isActivite = true
-        self.titleLabel.centerXanchor.constraint(equalTo:self.centerYAnchor).isActivite = true
-
-
-        self.subTitleLabel.centerXanchor.constraint(equalTo:self.centerXAnchor).isActivite = true
-        self.subTitleLabel.centerXanchor.constraint(equalTo:self.centerYAnchor).isActivite = true
-    }
-    
-    
-    init() {
-    super.init(frame: .zero)
-    }
-        
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implement")
+        fatalError("init(coder:) has not been implemented")
     }
-}
+    private var titleLabel: UILabel = {
+        let titleLabel: UILabel
+        titleLabel.text = "No repositories found"
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.textColor = UIColor.darkText
+        titleLabel.font = UIFont.systemFont(ofSize: 16)
+        return titleLabel
+        }()
+    
+        private var subTitleLabel: UILabel = {
+        let subTitleLabel: UILabel
+        subTitleLabel.text = "Search repositories found"
+        subTitleLabel.translatesAutoresizingMaskIntoConstraints = false
+        subTitleLabel.textColor = UIColor.gray
+        subTitleLabel.font = UIFont.systemFont(ofSize: 14)
+        return subTitleLabel
+        }()
+    
+        func updateView(with configuration: EmptyViewConfiguration) {
+            titleLabel.text = configuration.title
+            subTitleLabel.text = configuration.subtitle
+        }
+        let configuration = EmptyViewConfiguration(title: "No repositories found", subtitle: "Search repositories found")
+        let emptyView = EmptyView()
+        EmptyView.configure(with: configuration)
+    
+    
+    self.backgroundColor = .white
+    
+
+    }
+    
+    func configContraint() {
+        
+        titleLabel.centerXanchor.constraint(equalTo: centerXAnchor).isActivite = true
+        titleLabel.centerYanchor.constraint(equalTo: centerYAnchor).isActivite = true
+        
+        subTitleLabel.centerXanchor.constraint(equalTo: centerXAnchor).isActivite = true
+        subTitleLabel.centerYanchor.constraint(equalTo: centerYAnchor).isActivite = true
+    }
+    
+
+
