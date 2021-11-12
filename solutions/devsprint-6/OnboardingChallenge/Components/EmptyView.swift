@@ -9,32 +9,75 @@
 import Foundation
 import UIKit
 
-class EmptyView: UIView {
+final class EmptyView: UIView {
     
+    override init(frame: CGRect = .zero) {
+        super.init(frame: frame)
+    }
+
     
-    let titlelabel: UILabel()
-    titlelabel.text = "No repositories found"
-    titlelabel.translatesAutoresizingMaskIntoConstraints = false
-    titlelabel.textColor = UIColor.darktextcolor
-    titlelabel.font = UIFont.systemFont(ofSize: 16)
-    return titlelabel
+   
+    //label configuration
+    //private var emptyMessageLabel: UILabel = {
+    private var titleLabel: UILabel = {
+    let label: UILabel
+    label.text = "No repositories found"
+    label.translatesAutoresizingMaskIntoConstraints = false
+    label.textColor = UIColor.darkText
+    label.font = UIFont.systemFont(ofSize: 16)
+    return label
+    }()
     
+    private var subTitleLabel: UILabel = {
+    let label: UILabel
+    label.text = "Search repositories found"
+    label.translatesAutoresizingMaskIntoConstraints = false
+    label.textColor = UIColor.gray
+    label.font = UIFont.systemFont(ofSize: 14)
+    return label
+    }()
     
-    let subtitlelabel: UILabel()
-    subtitlelabel.text = "Search repositories found"
-    subtitlelabel.translatesAutoresizingMaskIntoConstraints = false
-    subtitlelabel.textColor = UIColor.gray
-    subtitlelabel.font = UIFont.systemFont(ofSize: 14)
-    return subtitlelabel
+    struct EmptyViewConfiguration {
+        let title: String
+        let subtitle: String
+    }
+    func updateView(with configuration: EmptyViewConfiguration) {
+        titleLabel.text = configuration.title
+        subtitleLabel.text = configuration.subtitle
+    }
+    let configuration = EmptyViewConfiguration(title: "No repositories found", subtitle: "Search repositories found")
+    let emptyView = EmptyView()
+    emptyView.configure(with: configuration)
     
-    self.backgroundcolor = .white
+    func configureSubView() {
+        
+    self.addSubview(emptyMessageLabel)
+
+    self.backgroundColor = .white
+        
+    }
     
-    self.addsuSubView(self.EmptyView)
-    self.insertSubview:aboveSubview:subtitlelabel
+    //add view
+    addSubView(titlelabel)
+    addSubView(subtitlelabel)
     
     //add contranint
-    self.titlelabel.centerXanchor.constraint(equalTo:self.centerXAnchor).isActivite = true
-    self.titlelabel.centerXanchor.constraint(equalTo:self.centerYAnchor).isActivite = true
+    func configurationcontrains() {
     
-    self.subtitlelabel.centerXanchor.constraint(equalTo:self.centerXAnchor).isActivite = true
-    self.subtitlelabel.centerXanchor.constraint(equalTo:self.centerYAnchor).isActivite = true
+        self.titleLabel.centerXanchor.constraint(equalTo:self.centerXAnchor).isActivite = true
+        self.titleLabel.centerXanchor.constraint(equalTo:self.centerYAnchor).isActivite = true
+
+
+        self.subTitleLabel.centerXanchor.constraint(equalTo:self.centerXAnchor).isActivite = true
+        self.subTitleLabel.centerXanchor.constraint(equalTo:self.centerYAnchor).isActivite = true
+    }
+    
+    
+    init() {
+    super.init(frame: .zero)
+    }
+        
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implement")
+    }
+}
