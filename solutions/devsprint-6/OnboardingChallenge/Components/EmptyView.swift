@@ -22,19 +22,21 @@ final class EmptyView: UIView {
         addSubview(titleLabel)
         addSubview(subTitleLabel)
         addSubview(configContraint)
-        
         backgroundColor = .white
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
     private var titleLabel: UILabel = {
         let titleLabel: UILabel
         titleLabel.text = "No repositories found"
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.textColor = UIColor.darkText
+        titleLabel.textColor = .black
         titleLabel.font = UIFont.systemFont(ofSize: 16)
+        titleLabel.textAlignment = .center
+        titleLabel.numberOfLines = 0
         return titleLabel
         }()
     
@@ -42,8 +44,10 @@ final class EmptyView: UIView {
         let subTitleLabel: UILabel
         subTitleLabel.text = "Search repositories found"
         subTitleLabel.translatesAutoresizingMaskIntoConstraints = false
-        subTitleLabel.textColor = UIColor.gray
+        subTitleLabel.textColor = .gray
         subTitleLabel.font = UIFont.systemFont(ofSize: 14)
+        subTitleLabel.textAlignment = .center
+        subTitleLabel.numberOfLines = 0
         return subTitleLabel
         }()
     
@@ -53,13 +57,11 @@ final class EmptyView: UIView {
         }
         let configuration = EmptyViewConfiguration(title: "No repositories found", subtitle: "Search repositories found")
         let emptyView = EmptyView()
-        EmptyView.configure(with: configuration)
-    
-    
-    self.backgroundColor = .white
+        emptyView.configure(with: configuration)
     
 
     }
+
     
     func configContraint() {
         
@@ -68,6 +70,7 @@ final class EmptyView: UIView {
         
         subTitleLabel.centerXanchor.constraint(equalTo: centerXAnchor).isActivite = true
         subTitleLabel.centerYanchor.constraint(equalTo: centerYAnchor).isActivite = true
+        
     }
     
 
