@@ -63,11 +63,13 @@ final class EmptyView: UIView {
             titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
             titleLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
             subTitleLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-            subTitleLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
+            subTitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 16),
             ])
     
     }
     
 }
+
+
 
 
