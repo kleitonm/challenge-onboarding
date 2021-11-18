@@ -38,7 +38,7 @@ private extension ListView {
 
     func customizeInterface() {
 
-        self.backgroundColor = .white
+        self.backgroundColor = .blue
 
         self.configureSubviews()
         self.configureSubviewsConstraints()

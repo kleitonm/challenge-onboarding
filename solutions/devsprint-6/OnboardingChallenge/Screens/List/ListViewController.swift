@@ -26,15 +26,25 @@ final class ListViewController: UIViewController {
     }
 
     override func loadView() {
+        let configuration = EmptyViewConfiguration(title: "No repositories found", subtitle: "Search for users to see their public \n repositories here!")
+        
+        let emptyView = EmptyView()
+        
+        emptyView.updateView(with: configuration)
+        self.view = emptyView
+        
 
-        self.view = self.listView
+
+
     }
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.fetchList()
     }
+    
 
     private func fetchList() {
 
