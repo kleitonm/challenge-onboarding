@@ -20,7 +20,7 @@ final class EmptyView: UIView {
     override init(frame: CGRect = .zero) {
         super.init(frame: frame)
         addSubview(titleLabel)
-        addSubview(titleLabel)
+        addSubview(subTitleLabel)
         
         configContraint()
         
