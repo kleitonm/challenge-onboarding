@@ -14,6 +14,27 @@ struct EmptyViewConfiguration {
     let subtitle: String
 }
 
+class SearchBar: UISearchController, UISearchResultsUpdating {
+    
+    let searchController = UISearchController(searchResultsController: nil)
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        title = "SearchBar"
+        searchBar.text = "Type a city or neighborhood"
+        searchBar.tintColor = .lightGray
+        searchController.searchResultsUpdater = self
+        navigationItem.searchController = searchController
+        
+    }
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let text = searchController.searchBar.text else {
+            return
+        }
+        print(text)
+    }
+}
+
 final class EmptyView: UIView {
     
     
@@ -67,6 +88,7 @@ final class EmptyView: UIView {
             ])
     
     }
+    
     
 }
 
