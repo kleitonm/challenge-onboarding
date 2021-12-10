@@ -71,7 +71,7 @@ struct EmptyViewConfiguration {
     private func setupNavigationBar() {
         navigationController?.navigationBar.prefersLargeTitles = true
         
-        let settingsButton = UIBarButtonItem(title: "Settings", style: .plain, target: self, action: #selector(SettingsView))
+        let settingsButton = UIBarButtonItem(title: "SearchBar", style: .plain, target: self, action: .selector(SettingsView))
         navigationItem.rightBarButtonItem = settingsButton
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
@@ -79,7 +79,7 @@ struct EmptyViewConfiguration {
     
     private func fetchList(for user: String) {
         
-        self.service.fetchList(for: User) { items in
+        self.service.fetchList(for: user) { items in
             
             let configuration = PropertyListViewController(repositories: items)
             
@@ -89,7 +89,7 @@ struct EmptyViewConfiguration {
         }
     }
     
-    private func instanceDetailsOf(_ item: RepositoriesModel) {
+    private func detailsOf(_ item: repositoriesModel) {
         let viewController = DetailViewController()
         viewController.title = item.name
         navigationController?.pushViewController(viewController, animated: true)
@@ -106,7 +106,7 @@ extension PropertyListViewController: UISearchResultsUpdating, UISearchControlle
     }
 }
 
-
+// Implement EmptyView
 final class EmptyView: UIView {
     
     
