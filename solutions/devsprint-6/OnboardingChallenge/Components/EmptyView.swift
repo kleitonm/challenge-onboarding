@@ -14,26 +14,98 @@ struct EmptyViewConfiguration {
     let subtitle: String
 }
 
-class SearchBar: UISearchController, UISearchResultsUpdating {
+ class PropertyListViewController: UIViewController {
     
-    let searchController = UISearchController(searchResultsController: nil)
+    private let service = Service()
+    private lazy var PropertyListView: ListView = {
+        return ListView()
+    }()
+    
+    private lazy var searchController: UISearchController = {
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.delegate = self
+        searchController.searchBar.delegate = self
+        searchController.searchResultsUpdater = self
+        searchController.searchBar.placeholder = "Type a city or neighborhood"
+        searchController.hidesNavigationBarDuringPresentation = false
+        return searchController
+    }()
+    
+    init() {
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "SearchBar"
-        searchBar.text = "Type a city or neighborhood"
-        searchBar.tintColor = .lightGray
-        searchController.searchResultsUpdater = self
-        navigationItem.searchController = searchController
-        
+        setupInterface()
+        Events()
     }
-    func updateSearchResults(for searchController: UISearchController) {
-        guard let text = searchController.searchBar.text else {
-            return
+    
+    override func loadView() {
+        super.loadView()
+        navigationItem.searchController = searchController
+    }
+    
+    func SettingsView() {
+        let settingsViewController = SettingsViewController()
+        let navBarController = UINavigationController(rootViewController: SettingsViewController)
+        navBarController.navigationBar.backgroundColor = .systemGray5
+        navigationController?.present(navBarController , animated: true, completion: nil)
+    }
+    
+    private func Events() {
+        ListView.didSelectedRow = { [weak self] item in
+            self?.instanceDetailsOf(item)
         }
-        print(text)
+    }
+    
+    private func setupInterface() {
+        title = "Repositories"
+        setupNavigationBar()
+    }
+    
+    private func setupNavigationBar() {
+        navigationController?.navigationBar.prefersLargeTitles = true
+        
+        let settingsButton = UIBarButtonItem(title: "Settings", style: .plain, target: self, action: #selector(SettingsView))
+        navigationItem.rightBarButtonItem = settingsButton
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
+    }
+    
+    private func fetchList(for user: String) {
+        
+        self.service.fetchList(for: User) { items in
+            
+            let configuration = PropertyListViewController(repositories: items)
+            
+            DispatchQueue.main.async {
+                self.listView.updateView(with: configuration)
+            }
+        }
+    }
+    
+    private func instanceDetailsOf(_ item: RepositoriesModel) {
+        let viewController = DetailViewController()
+        viewController.title = item.name
+        navigationController?.pushViewController(viewController, animated: true)
     }
 }
+
+extension PropertyListViewController: UISearchResultsUpdating, UISearchControllerDelegate, UISearchBarDelegate {
+    func updateSearchResults(for searchController: UISearchController) {
+        
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        print(searchController.searchBar.text)
+    }
+}
+
 
 final class EmptyView: UIView {
     
@@ -91,7 +163,3 @@ final class EmptyView: UIView {
     
     
 }
-
-
-
-
