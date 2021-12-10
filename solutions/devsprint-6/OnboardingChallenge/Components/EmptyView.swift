@@ -14,9 +14,8 @@ struct EmptyViewConfiguration {
     let subtitle: String
 }
 
- class PropertyListViewController: UIViewController {
+class PropertyListViewController: UIViewController {
     
-    private let service = Service()
     private lazy var PropertyListView: ListView = {
         return ListView()
     }()
@@ -33,6 +32,8 @@ struct EmptyViewConfiguration {
     
     init() {
         super.init(nibName: nil, bundle: nil)
+        
+        navigationItem.searchController = searchController
     }
     
     required init?(coder: NSCoder) {
@@ -41,35 +42,12 @@ struct EmptyViewConfiguration {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        Events()
-        detailsOf()
-        SettingsView()
     }
     
     override func loadView() {
         super.loadView()
-        navigationItem.searchController = searchController
     }
     
-    func SettingsView() {
-        let settingsViewController = SettingsViewController()
-        let navBarController = UINavigationController(rootViewController: SettingsViewController)
-        navBarController.navigationBar.backgroundColor = .systemGray5
-        navigationController?.present(navBarController , animated: true, completion: nil)
-    }
-    
-    private func Events() {
-        ListView.didSelectedRow = { [weak self] item in
-            self?.instanceDetailsOf(item)
-        }
-    }
-    
-    
-    private func detailsOf(_ item: RepositoriesModel) {
-        let viewController = DetailViewController()
-        viewController.title = item.name
-        navigationController?.pushViewController(viewController, animated: true)
-    }
 }
 
 extension PropertyListViewController: UISearchResultsUpdating, UISearchControllerDelegate, UISearchBarDelegate {
