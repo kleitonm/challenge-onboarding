@@ -21,6 +21,7 @@
 		989FD08D273ABDD7009836F6 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989FD082273ABDD7009836F6 /* UIColor+Extensions.swift */; };
 		989FD08E273ABDD7009836F6 /* UITableViewCell+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989FD083273ABDD7009836F6 /* UITableViewCell+Extensions.swift */; };
 		989FD08F273ABDD7009836F6 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989FD085273ABDD7009836F6 /* Service.swift */; };
+		A17F726B2763FAFD000AE781 /* PropertyListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17F726A2763FAFD000AE781 /* PropertyListViewController.swift */; };
 		A1FA9CF7273B53F000311F26 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FA9CF6273B53F000311F26 /* EmptyView.swift */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +54,7 @@
 		989FD082273ABDD7009836F6 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		989FD083273ABDD7009836F6 /* UITableViewCell+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Extensions.swift"; sourceTree = "<group>"; };
 		989FD085273ABDD7009836F6 /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		A17F726A2763FAFD000AE781 /* PropertyListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyListViewController.swift; sourceTree = "<group>"; };
 		A1FA9CF6273B53F000311F26 /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -123,6 +125,7 @@
 				989FD076273ABDD7009836F6 /* Settings */,
 				989FD078273ABDD7009836F6 /* Detail */,
 				989FD07A273ABDD7009836F6 /* List */,
+				A17F726A2763FAFD000AE781 /* PropertyListViewController.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -307,6 +310,7 @@
 				989FD086273ABDD7009836F6 /* SettingsViewController.swift in Sources */,
 				989FD088273ABDD7009836F6 /* ListViewController.swift in Sources */,
 				989FD087273ABDD7009836F6 /* DetailViewController.swift in Sources */,
+				A17F726B2763FAFD000AE781 /* PropertyListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

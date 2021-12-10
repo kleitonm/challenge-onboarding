@@ -25,20 +25,23 @@ final class ListViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+//    override func loadView() {
+//        let configuration = EmptyViewConfiguration(title: "No repositories found", subtitle: "Search for users to see their public \n repositories here!")
+//
+//        let emptyView = EmptyView()
+//
+//        emptyView.updateView(with: configuration)
+//        self.view = emptyView
+//    }
+    
     override func loadView() {
-        let configuration = EmptyViewConfiguration(title: "No repositories found", subtitle: "Search for users to see their public \n repositories here!")
+        _ = PropertyListViewController()
+        let searchBar = ListView()
         
-        let emptyView = EmptyView()
-        
-        emptyView.updateView(with: configuration)
-        self.view = emptyView
-        
-
-
-
+        self.view = searchBar
+   
     }
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
