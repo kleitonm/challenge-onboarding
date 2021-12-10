@@ -41,8 +41,9 @@ struct EmptyViewConfiguration {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupInterface()
         Events()
+        detailsOf()
+        SettingsView()
     }
     
     override func loadView() {
@@ -63,33 +64,8 @@ struct EmptyViewConfiguration {
         }
     }
     
-    private func setupInterface() {
-        title = "Repositories"
-        setupNavigationBar()
-    }
     
-    private func setupNavigationBar() {
-        navigationController?.navigationBar.prefersLargeTitles = true
-        
-        let settingsButton = UIBarButtonItem(title: "SearchBar", style: .plain, target: self, action: .selector(SettingsView))
-        navigationItem.rightBarButtonItem = settingsButton
-        navigationItem.searchController = searchController
-        navigationItem.hidesSearchBarWhenScrolling = false
-    }
-    
-    private func fetchList(for user: String) {
-        
-        self.service.fetchList(for: user) { items in
-            
-            let configuration = PropertyListViewController(repositories: items)
-            
-            DispatchQueue.main.async {
-                self.listView.updateView(with: configuration)
-            }
-        }
-    }
-    
-    private func detailsOf(_ item: repositoriesModel) {
+    private func detailsOf(_ item: RepositoriesModel) {
         let viewController = DetailViewController()
         viewController.title = item.name
         navigationController?.pushViewController(viewController, animated: true)
